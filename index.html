@@ -2,86 +2,125 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Love Letter with Pictures at Bottom</title>
+  <title>Love Letter with Scrollable Message</title>
   <style>
     body {
-      background-color: #f8e1e7;
+      background-color: #333;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden;
-      font-family: 'Courier New', Courier, monospace;
       margin: 0;
+      overflow: hidden;
+      transition: background 2s ease;
     }
+
     .envelope {
       position: relative;
       width: 500px;
       height: 330px;
-      background: #ffcccc;
-      border: 3px solid #cc9999;
+      background: #444;
+      border: 3px solid #222;
       border-radius: 15px;
       cursor: pointer;
       overflow: hidden;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-      transition: background 0.3s;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+      z-index: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      transition: background 2s ease;
     }
+
     .flap {
       position: absolute;
       top: 0;
       width: 100%;
       height: 50%;
-      background: #ff9999;
+      background: #555;
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       transform-origin: top center;
-      transition: transform 0.8s;
+      transition: transform 1s ease-out, top 0.5s;
     }
+
     .letter {
       position: absolute;
       top: 100%;
       width: 90%;
       margin: 0 5%;
       height: 250px;
-      background: white;
+      background: #fff;
       border-radius: 10px;
       padding: 20px;
       box-sizing: border-box;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
       text-align: center;
-      font-size: 16px;
-      line-height: 1.5;
-      overflow-y: auto;
-      transition: top 1s;
+      font-size: 18px;
+      color: #333;
+      line-height: 1.6;
+      transition: top 1s ease-out;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      overflow-y: auto;
     }
-    .letter-text {
-      margin-bottom: 20px;
-    }
-    .letter-images img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin: 5px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    .open .flap {
-      transform: rotateX(180deg);
-    }
-    .open .letter {
-      top: 20%;
-    }
+
     h1 {
       margin-top: 0;
-      color: #cc3366;
-      font-size: 24px;
+      color: #222;
+      font-size: 28px;
     }
+
     p {
       color: #333;
       margin-bottom: 10px;
+      font-size: 18px;
     }
+
+    /* Flower effect when the letter opens */
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 182, 193, 0.7) 20%, transparent 80%);
+      transform: translate(-50%, -50%);
+      animation: flowerBloom 2s ease-out forwards;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes flowerBloom {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Happy theme styles when envelope is opened */
+    .open {
+      background: #f9c8d1;
+    }
+
+    .open .flap {
+      transform: rotateX(180deg);
+      top: -50%;
+    }
+
+    .open .letter {
+      top: 10%;
+    }
+
+    .open body {
+      background-color: #f9e6e6;
+    }
+
   </style>
 </head>
 <body>
@@ -91,23 +130,17 @@
   <div class="letter">
     <div class="letter-text">
       <h1>Happy Birthday Love!</h1>
-      <p>Thanks God binigay ka sakin <3.</p>
-      <p>Nag papasalamat ako kase sobrang alaga mo sakin.</p>
-      <p>Pasensya na kung minsan ako dahilan pagkalungkot mo.</p>
-      <p>Pero tandaan mo nandito ako lagi para sayo.</p>
-      <p>Habang buhay kitang mamahalin mahal na mahal kita!!</p>
-    </div>
-    <div class="letter-images">
-      <img src="https://github.com/vvvwhy/index/raw/main/whats.jpg" alt="Love Photo 1">
-      <img src="https://github.com/vvvwhy/index/raw/main/love2.jpg" alt="Love Photo 2">
-      <img src="https://github.com/vvvwhy/index/raw/main/love3.jpg" alt="Love Photo 3">
+      <p>Thanks God binigay ka sakin <3. Nag papasalamat ako kase sobrang alaga mo sakin. Pasensya na kung minsan ako dahilan pagkalungkot mo. Pero tandaan mo nandito ako lagi para sayo. Alam ko naman malungkot ka kase hindi ako nakatulog dyan ngayon. Pero makakabawi naman ako tandaan mo mahal na mahal kita kahit anong mangyare. Special ang birthday mo ah tandaan mo yan dati ganan din ako simula palang ng highschool ako hindi na special birthday sakin e, pero nung dumating ka tapos pinaramdam mo sakin na spcial yung birthday ko at dapat masaya ako tuwing birthday ko doon ko lang na realize na magiging spcial lang birthday ko at masaya kapag nandyan ka <3 kaya mahal tandaan mo nandito ako para sayo lalo na ngayong kaarawan mo. Ginagawa ko lahat para maging masaya ka sa kaarawan mo. Sobrang mahal kita sobrang swerte ko at dumating ka sa buhay ko at lagi akong nagpapasalamat sa Diyos na sobrang loyal mo sakin. Happy Birthday mahal ko this is you special day!! i love you and i miss you my future wife mwa mwa mwa!!</p>
     </div>
   </div>
 </div>
 
 <script>
   function openEnvelope() {
-    document.querySelector('.envelope').classList.toggle('open');
+    const envelope = document.querySelector('.envelope');
+    const body = document.querySelector('body');
+    envelope.classList.toggle('open');
+    body.classList.toggle('open');
   }
 </script>
 
